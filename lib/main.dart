@@ -1,13 +1,19 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
+import 'package:nirvana/models/playlist_provider.dart';
 import 'package:nirvana/pages/home_page.dart';
 import 'package:nirvana/themes/theme_provider.dart';
 import 'package:provider/provider.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => ThemeProvider(),
-      child: const nirvana()
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => ThemeProvider()),
+        ChangeNotifierProvider(create: (context) => PlaylistProvider()),
+      ],
+      child: const nirvana(),
     ),
   );
 }
@@ -22,6 +28,5 @@ class nirvana extends StatelessWidget {
       home: const HomePage(),
       theme: Provider.of<ThemeProvider>(context).themeData,
     );
-      
   }
 }
