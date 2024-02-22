@@ -1,21 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:nirvana/pages/home_page.dart';
-import 'package:nirvana/themes/light_mode.dart';
+import 'package:nirvana/themes/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const nirvana());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => ThemeProvider(),
+      child: const nirvana()
+    ),
+  );
 }
 
 class nirvana extends StatelessWidget {
   const nirvana({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
-      theme: lightMode,
+      home: const HomePage(),
+      theme: Provider.of<ThemeProvider>(context).themeData,
     );
       
   }
