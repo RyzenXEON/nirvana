@@ -44,4 +44,11 @@ class PlaylistProvider extends ChangeNotifier {
   Setter
   
    */
+  set currentSongIndex(int? newIndex){
+    //update current index
+    _currentSongIndex =newIndex;
+
+    //update UI
+    notifyListeners();
+  }
 }
